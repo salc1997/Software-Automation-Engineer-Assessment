@@ -40,6 +40,7 @@ test('Delete a Kanban Card', async ({ page })=> {
   console.log(totalKanbanCards)
 
   const articles = await page.locator('section article').all();
+    /* check how many cards there are before deleting */ 
   if (articles.length > 0) {
     const randomIndex = Math.floor(Math.random() * articles.length);
     const randomArticle = articles[randomIndex];
@@ -50,6 +51,7 @@ test('Delete a Kanban Card', async ({ page })=> {
     await page.getByRole('button', { name: 'Delete' }).click();
   } 
 
+  /* check how many cards there are after deleting */ 
 let totalKanbanCards2 = 0;
 for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
@@ -67,14 +69,15 @@ test('Toggle dark mode', async ({ page })=> {
   const kanban = new KanbanPage(page);
   const base = new BasePage(page);
   await base.loadWeb("https://kanban-566d8.firebaseapp.com/task1722528156947");
+  /* looking for the toggle */
   const darkModeToggleLabel = page.locator('label:has(input[type="checkbox"])');
 
   await darkModeToggleLabel.click();
   const htmlDarkTag = page.locator('html');
 
-  // Verifica si la etiqueta <html> tiene la clase 'dark'
+  /* check if the html tag has the class dark */
   const isTheDarkModeOn = await htmlDarkTag.evaluate(el => el.classList.contains('dark'));
 
-  // Usa expect para verificar el resultado
-  expect(isTheDarkModeOn).toBe(true); // Cambia a .toBe(false) si 
+  /* Check if the dark mode is on */
+  expect(isTheDarkModeOn).toBe(true); 
 })
