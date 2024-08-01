@@ -19,9 +19,6 @@ export class KanbanPage extends BasePage {
             this.darkModeToggleButton = page.locator(KanbanLocators.darkModeToggleButton);
         }
 
-      /*  async loginWithCorrectUser(){
-            await this.fillField(LoginLocators.username, 'student');
-        }*/
 
             async howManyElementsExist(){
                 const sectionListElements = this.sectionList.all();
